@@ -8,6 +8,9 @@ const mongoose = require('./config/mongooseConfig');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const morgan = require('morgan');
+app.use(morgan('dev'));
+
 require('./config/passportConfig');
 const sessionParams = require('./config/sessionConfig');
 const passport = require('passport');
