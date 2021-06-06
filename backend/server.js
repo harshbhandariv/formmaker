@@ -24,7 +24,11 @@ app.get("/", function (req, res) {
 });
 
 const auth = require('./routes/auth');
+const userRoute = require('./routes/userRoute');
+const formRoute = require('./routes/formRoute');
 app.use('/auth', auth);
+app.use('/api/user', userRoute);
+app.use('/api/form', formRoute);
 
 const PORT = process.env.PORT || 3500;
 app.listen(PORT, function () {

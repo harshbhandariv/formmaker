@@ -5,6 +5,7 @@ const formSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  title: String,
   formData: [
     {
       question: String,

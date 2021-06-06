@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const loggedIn = require('../utils/loggedIn');
+const loggedIn = require("../utils/loggedIn");
 router.get(
   "/github",
   passport.authenticate("github", { scope: ["user:email"] })
@@ -12,16 +12,17 @@ router.get(
   passport.authenticate("github", { failureRedirect: "/" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    if(process.env.NODE_ENV==="development") return res.redirect("http://localhost:3000/dashboard")
+    if (process.env.NODE_ENV === "development")
+      return res.redirect("http://localhost:3000/dashboard");
     res.redirect("/");
   }
 );
 
-router.get('/loggedIn', loggedIn, function(req, res) {
+router.get("/loggedIn", loggedIn, function (req, res) {
   res.send({
     message: "loggedIn",
-    loggedIn: true
-  })
+    loggedIn: true,
+  });
 });
 
 router.get("/logout", (req, res) => {
