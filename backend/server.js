@@ -8,11 +8,22 @@ const mongoose = require('./config/mongooseConfig');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+require('./config/passportConfig');
+const sessionParams = require('./config/sessionConfig');
+const passport = require('passport');
+const session = require('express-session');
+app.use(session(sessionParams));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get("/", function (req, res) {
-  res.send("Hello");
+  res.send("Hello" + req.user);
 });
 
-const PORT = process.env.PORT || 4000;
+const auth = require('./routes/auth');
+app.use('/auth', auth);
+
+const PORT = process.env.PORT || 3500;
 app.listen(PORT, function () {
   console.log(`Listening on PORT ${PORT}`);
 });

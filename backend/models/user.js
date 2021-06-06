@@ -8,11 +8,12 @@ const userSchema = new Schema({
   authID: {
     platform: String,
     id: String,
+    accessToken: String
   },
-  forms: {
+  forms: [{
     type: Schema.Types.ObjectId,
     ref: "Form",
-  },
+  }],
 });
 
 const User = model("User", userSchema);
