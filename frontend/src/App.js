@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
@@ -27,6 +27,7 @@ function App() {
     <div className="App">
       <AuthContext.Provider value={[loggedIn, toggleAuthentication]}>
         <Router>
+          <Link to="/">Home</Link>
           <Switch>
             <Route exact path="/dashboard">
               <Dashboard />

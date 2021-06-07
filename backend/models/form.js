@@ -13,7 +13,7 @@ const formSchema = new Schema({
       options: [String],
     },
   ],
-  formResponse: [["String"]],
+  formResponse: [Schema.Types.Mixed],
 });
 
 const Form = model("Form", formSchema);
