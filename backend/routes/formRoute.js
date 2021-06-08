@@ -5,6 +5,8 @@ const {
   readForm,
   submitForm,
   getResponses,
+  updateForm,
+  deleteForm,
 } = require("../controllers/formController");
 const router = express.Router();
 const loggedIn = require("../utils/loggedIn");
@@ -19,6 +21,39 @@ router.get("/:formID/read", function (req, res) {
         message: "Internal Server Error",
       });
     res.send({ message: "success", data: form });
+  });
+});
+
+router.get("/:formID/edit", loggedIn, checkeligible, function (req, res) {
+  const { formID } = req.params;
+  return readForm(formID, function done(err, form) {
+    if (err)
+      return res.status(500).send({
+        message: "Internal Server Error",
+      });
+    res.send({ message: "success", data: form });
+  });
+});
+
+router.post("/:formID/edit", loggedIn, checkeligible, function (req, res) {
+  const { formID } = req.params;
+  return updateForm(formID, req.body, function done(err, form) {
+    if (err)
+      return res.status(500).send({
+        message: "Internal Server Error",
+      });
+    res.send({ message: "success", data: form });
+  });
+});
+
+router.delete("/:formID/delete", loggedIn, checkeligible, function (req, res) {
+  const { formID } = req.params;
+  return deleteForm(formID, req.user._id, function done(err) {
+    if (err)
+      return res.status(500).send({
+        message: "Internal Server Error",
+      });
+    res.send({ message: "success" });
   });
 });
 

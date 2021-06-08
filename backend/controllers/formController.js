@@ -49,19 +49,56 @@ function readForm(id, done) {
 }
 
 function submitForm(id, body, done) {
-  Form.findById(id).exec(function(err, form) {
-    if(err) done(err, null);
+  Form.findById(id).exec(function (err, form) {
+    if (err) done(err, null);
     form.formResponse.push(body);
-    form.save(function(err, form1) {
+    form.save(function (err, form1) {
       done(err, form1);
     });
   });
 }
 
 function getResponses(id, done) {
-  Form.findById(id).select('formResponse').exec(function(err, form) {
-    done(err, form.formResponse)
-  })
+  Form.findById(id)
+    .select("formResponse title")
+    .exec(function (err, form) {
+      done(err, form);
+    });
 }
 
-module.exports = { getAllForms, createForm, readForm, submitForm, getResponses};
+function updateForm(id, body, done) {
+  Form.findById(id).exec(function (err, form) {
+    if (err) done(err, form);
+    form.title = body.title;
+    form.formData = body.formData;
+    form.formResponse = [];
+    form.save(function (err, result) {
+      done(err, result);
+    });
+  });
+}
+
+function deleteForm(id, userID, done) {
+  Form.deleteOne({ _id: id }, function (err) {
+    if (err) return done(err, null);
+    User.findById(userID).exec(function (err1, user) {
+      if (err1) return done(err1, null);
+      let x = [...user.forms];
+      let index = x.findIndex((fid) => id == fid);
+      user.forms = [...x.slice(0, index), ...x.slice(index + 1)];
+      user.save(function (err3, result) {
+        return done(err3);
+      });
+    });
+  });
+}
+
+module.exports = {
+  getAllForms,
+  createForm,
+  readForm,
+  submitForm,
+  getResponses,
+  updateForm,
+  deleteForm,
+};

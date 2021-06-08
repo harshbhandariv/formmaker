@@ -39,6 +39,17 @@ export default function Dashboard() {
       setForms([]);
     };
   }, []);
+  function handleDelete(id) {
+    axios.delete(`/api/form/${id}/delete`).then(({data}) => {
+      if(data.message === "success") {
+        axios.get("/api/form/all").then(({ data }) => {
+          if (data.message === "success") {
+            setForms(data.data.forms);
+          }
+        });
+      }
+    })
+  }
   if (!loggedIn.Authenticated) return <Redirect to="/" />;
   return (
     <div>
@@ -61,7 +72,8 @@ export default function Dashboard() {
               <Link to={`/form/${form._id}/view`}>{form.title}</Link>{" "}
               <Link to={`/form/${form._id}/view`}>View</Link>{" "}
               <Link to={`/form/${form._id}/edit`}>Edit</Link>{" "}
-              <Link to={`/form/${form._id}/response`}>Response</Link>
+              <Link to={`/form/${form._id}/response`}>Response</Link>{" "}
+              <button onClick={() => handleDelete(form._id)}>Delete</button>
             </div>
           ))}
         </div>
