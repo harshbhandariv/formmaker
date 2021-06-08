@@ -15,14 +15,20 @@ require("./config/passportConfig");
 const sessionParams = require("./config/sessionConfig");
 const passport = require("passport");
 const session = require("express-session");
+const flash = require("connect-flash");
 app.use(session(sessionParams));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 if (process.env.NODE_ENV === "devolopment")
   app.get("/", function (req, res) {
     res.send("Hello" + req.user);
   });
+
+app.get("/flash", function (req, res) {
+  res.status(200).send(req.flash());
+});
 
 const auth = require("./routes/auth");
 const userRoute = require("./routes/userRoute");
@@ -33,7 +39,7 @@ app.use("/api/form", formRoute);
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
   app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
   });
 }

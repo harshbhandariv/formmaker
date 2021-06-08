@@ -15,7 +15,7 @@ passport.use(
         if (err || user) return done(err, user);
         const { id, avatar_url, email, name, login } = profile._json;
         if (email == undefined)
-          return done({ message: "Make your Email Address Public" }, null);
+          return done(null, false, {message: "Email address not public"});
         User({
           name: name || "Pristine Inability",
           email: email,
