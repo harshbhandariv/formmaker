@@ -136,7 +136,7 @@ function ViewForm() {
                       <input
                         type={questionType}
                         name={question}
-                        id={option}
+                        id={`option${gindex}${index}`}
                         value={option}
                         checked={
                           questionType === "radio"
@@ -146,7 +146,7 @@ function ViewForm() {
                         required={questionType === "radio"}
                         onChange={(e) => handleChange(e, gindex, index)}
                       />
-                      <label htmlFor={option}>{option}</label>
+                      <label htmlFor={`option${gindex}${index}`}>{option}</label>
                     </div>
                   ))}
                 </div>
