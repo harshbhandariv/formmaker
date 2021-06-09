@@ -7,8 +7,7 @@ const userSchema = new Schema({
   profilePicture: String,
   authID: {
     platform: String,
-    id: String,
-    accessToken: String
+    id: String
   },
   forms: [{
     type: Schema.Types.ObjectId,

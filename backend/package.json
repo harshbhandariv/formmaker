@@ -16,6 +16,7 @@
   "author": "Harsh",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",

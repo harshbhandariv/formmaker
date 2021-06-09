@@ -5,7 +5,6 @@ const loggedIn = require("../utils/loggedIn");
 
 router.get('/profile', loggedIn, function(req, res) {
     return getUserProfile(req.user._id, function done(err, user) {
-        console.log(err, user, "From userRoute");
         if(err) return res.status(500).send({
             message: "Internal Server Error"
         });

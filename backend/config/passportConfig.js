@@ -1,6 +1,7 @@
 var passport = require("passport"),
   GitHubStrategy = require("passport-github2").Strategy;
 const { User } = require("../models/user");
+const axios = require("axios");
 
 passport.use(
   "github",
@@ -12,24 +13,31 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       User.findOne({ "authID.id": profile.id }, function (err, user) {
+        console.log(err, user);
         if (err || user) return done(err, user);
-        const { id, avatar_url, email, name, login } = profile._json;
-        if (email == undefined)
-          return done(null, false, {message: "Email addresss on GitHub is private"});
-        User({
-          name: name || "Pristine Inability",
-          email: email,
-          username: login,
-          profilePicture: avatar_url,
-          forms: [],
-          authID: {
-            platform: "github",
-            id,
-            accessToken,
-          },
-        }).save(function (err, result) {
-          done(err, result);
-        });
+        const { id, avatar_url, name, login } = profile._json;
+        axios
+          .get("https://api.github.com/user/emails", {
+            headers: {
+              Authorization: `token ${accessToken}`,
+            },
+          })
+          .then(({ data }) => {
+            User({
+              name: name || `Pristine Ability${id}`,
+              email: data[0].email,
+              username: login,
+              profilePicture: avatar_url,
+              forms: [],
+              authID: {
+                platform: "github",
+                id,
+              },
+            }).save(function (err, result) {
+              console.log("Authenticated", result);
+              done(err, result);
+            });
+          });
       });
     }
   )
