@@ -15,7 +15,7 @@ passport.use(
         if (err || user) return done(err, user);
         const { id, avatar_url, email, name, login } = profile._json;
         if (email == undefined)
-          return done(null, false);
+          return done(null, false, {message: "Email addresss on GitHub is private"});
         User({
           name: name || "Pristine Inability",
           email: email,

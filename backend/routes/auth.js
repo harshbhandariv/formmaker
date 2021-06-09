@@ -9,7 +9,7 @@ router.get(
 
 router.get(
   "/github/callback",
-  passport.authenticate("github", { failureRedirect: "/" }),
+  passport.authenticate("github", { failureRedirect: "/authentication/fail", failureFlash: true }),
   function (req, res) {
     // Successful authentication, redirect home.
     if (process.env.NODE_ENV === "development")

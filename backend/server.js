@@ -15,15 +15,25 @@ require("./config/passportConfig");
 const sessionParams = require("./config/sessionConfig");
 const passport = require("passport");
 const session = require("express-session");
+const flash = require('connect-flash')
 app.use(session(sessionParams));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 if (process.env.NODE_ENV === "devolopment")
   app.get("/", function (req, res) {
     res.send("Hello" + req.user);
   });
 
+app.get('/authentication/fail', function(req, res) {
+  let x = req.flash();
+  const isEmpty = require('./utils/isEmpty');
+  if(!isEmpty(x)) {
+    return res.send(x);
+  } 
+  res.redirect('/');
+})
 const auth = require("./routes/auth");
 const userRoute = require("./routes/userRoute");
 const formRoute = require("./routes/formRoute");
