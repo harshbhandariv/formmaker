@@ -59,8 +59,8 @@ export default function Dashboard() {
         <h1>Profile</h1>
         <div>
           <div>Name: {profile.name}</div>
-          <div>Email: {profile.email}</div>
           <div>Username: {profile.username}</div>
+          <div>Email: {profile.email}</div>
           <div>Profile Picture: {profile.profilePicture}</div>
         </div>
       </div>
