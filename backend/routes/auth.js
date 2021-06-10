@@ -9,7 +9,50 @@ router.get(
 
 router.get(
   "/github/callback",
-  passport.authenticate("github", { failureRedirect: "/authentication/fail", failureFlash: true }),
+  passport.authenticate("github", {
+    failureRedirect: "/authentication/fail",
+    failureFlash: true,
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    if (process.env.NODE_ENV === "development")
+      return res.redirect("http://localhost:3000/dashboard");
+    res.redirect("/");
+  }
+);
+
+router.get("/twitter", passport.authenticate("twitter"));
+
+router.get(
+  "/twitter/callback",
+  passport.authenticate("twitter", {
+    failureRedirect: "/authentication/fail",
+    failureFlash: true,
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    if (process.env.NODE_ENV === "development")
+      return res.redirect("http://localhost:3000/dashboard");
+    res.redirect("/");
+  }
+);
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/authentication/fail",
+    failureFlash: true,
+  }),
   function (req, res) {
     // Successful authentication, redirect home.
     if (process.env.NODE_ENV === "development")

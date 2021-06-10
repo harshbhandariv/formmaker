@@ -21,7 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-if (process.env.NODE_ENV === "devolopment")
+if (process.env.NODE_ENV === "development")
   app.get("/", function (req, res) {
     res.send("Hello" + req.user);
   });

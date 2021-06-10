@@ -64,7 +64,6 @@ router.post("/:formID/record", function (req, res) {
       return res.status(500).send({
         message: "Internal Server Error",
       });
-    console.log(result);
     res.send({ message: "success" });
   });
 });
@@ -81,7 +80,6 @@ router.get("/all", loggedIn, function (req, res) {
 
 router.post("/create", loggedIn, function (req, res) {
   return createForm(req.user._id, req.body.title, function done(err, result) {
-    console.log(err, result);
     if (err)
       return res.status(500).send({
         message: "Internal Server Error",

@@ -7,14 +7,18 @@ const userSchema = new Schema({
   profilePicture: String,
   authID: {
     platform: String,
-    id: String
+    id: String,
+    accessToken: String,
+    refreshToken: String,
   },
-  forms: [{
-    type: Schema.Types.ObjectId,
-    ref: "Form",
-  }],
+  forms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Form",
+    },
+  ],
 });
 
 const User = model("User", userSchema);
 
-module.exports = {userSchema, User};
+module.exports = { userSchema, User };
