@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import "./App.css";
+// import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Form from "./components/Form";
 import Home from "./components/Home";
@@ -9,25 +9,27 @@ import AuthContext from "./context/AuthContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState({ Autenticated: false });
+  const [loading, setLoading] = useState(true);
   useEffect(function () {
     axios
       .get("/auth/loggedIn")
       .then(function (res) {
         if (res.data.loggedIn) setLoggedIn({ Authenticated: true });
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false);
       });
   }, []);
   function toggleAuthentication() {
     setLoggedIn((loggedIn) => !loggedIn);
   }
 
-  return (
+  return (!loading &&(
     <div className="App">
       <AuthContext.Provider value={[loggedIn, toggleAuthentication]}>
         <Router>
-          <Link to="/">Home</Link>
           <Switch>
             <Route exact path="/dashboard">
               <Dashboard />
@@ -45,7 +47,7 @@ function App() {
         </Router>
       </AuthContext.Provider>
     </div>
-  );
+  ));
 }
 
 export default App;

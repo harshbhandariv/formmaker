@@ -26,8 +26,7 @@
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-github2": "^0.1.12",
-    "passport-google-oauth": "^2.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-google-oauth": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

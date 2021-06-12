@@ -1,18 +1,18 @@
-var passport = require("passport"),
+let passport = require("passport"),
   GitHubStrategy = require("passport-github2").Strategy,
-  TwitterStrategy = require("passport-twitter").Strategy;
+  // TwitterStrategy = require("passport-twitter").Strategy;
 GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const { User } = require("../models/user");
 const axios = require("axios");
 let {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
-  TWITTER_CONSUMER_KEY,
-  TWITTER_CONSUMER_SECRET,
+  // TWITTER_CONSUMER_KEY,
+  // TWITTER_CONSUMER_SECRET,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   GITHUB_CALLBAACK_URL,
-  TWITTER_CALLBAACK_URL,
+  // TWITTER_CALLBAACK_URL,
   GOOGLE_CALLBAACK_URL,
 } = process.env;
 
@@ -58,41 +58,41 @@ passport.use(
   )
 );
 
-passport.use(
-  new TwitterStrategy(
-    {
-      consumerKey: TWITTER_CONSUMER_KEY,
-      consumerSecret: TWITTER_CONSUMER_SECRET,
-      callbackURL: TWITTER_CALLBAACK_URL,
-      includeEmail: true,
-    },
-    function (token, tokenSecret, profile, cb) {
-      User.findOne(
-        { "authID.id": profile.id, "authID.platform": "Twitter" },
-        function (err, user) {
-          if (err || user) return cb(err, user);
-          const { id_str, profile_image_url, email, name, screen_name } =
-            profile._json;
-          User({
-            name: name || `Pristine Ability${id}`,
-            email: email,
-            username: screen_name,
-            profilePicture: profile_image_url.replace(/normal/, "400x400"),
-            forms: [],
-            authID: {
-              platform: "Twitter",
-              id: id_str,
-              accessToken: token,
-              refreshToken: tokenSecret,
-            },
-          }).save(function (err, result) {
-            cb(err, result);
-          });
-        }
-      );
-    }
-  )
-);
+// passport.use(
+//   new TwitterStrategy(
+//     {
+//       consumerKey: TWITTER_CONSUMER_KEY,
+//       consumerSecret: TWITTER_CONSUMER_SECRET,
+//       callbackURL: TWITTER_CALLBAACK_URL,
+//       includeEmail: true,
+//     },
+//     function (token, tokenSecret, profile, cb) {
+//       User.findOne(
+//         { "authID.id": profile.id, "authID.platform": "Twitter" },
+//         function (err, user) {
+//           if (err || user) return cb(err, user);
+//           const { id_str, profile_image_url, email, name, screen_name } =
+//             profile._json;
+//           User({
+//             name: name || `Pristine Ability${id}`,
+//             email: email,
+//             username: screen_name,
+//             profilePicture: profile_image_url.replace(/normal/, "400x400"),
+//             forms: [],
+//             authID: {
+//               platform: "Twitter",
+//               id: id_str,
+//               accessToken: token,
+//               refreshToken: tokenSecret,
+//             },
+//           }).save(function (err, result) {
+//             cb(err, result);
+//           });
+//         }
+//       );
+//     }
+//   )
+// );
 
 passport.use(
   new GoogleStrategy(

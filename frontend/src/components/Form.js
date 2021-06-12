@@ -273,7 +273,7 @@ function reducer(state, action) {
 
 function EditForm() {
   const [state, dispatch] = useReducer(reducer, []);
-  const [form, setForm] = useState({});
+  // const [form, setForm] = useState({});
   const [title, setTitle] = useState("");
   const { formID } = useParams();
   const history = useHistory();
@@ -283,7 +283,7 @@ function EditForm() {
         .get(`/api/form/${formID}/edit`)
         .then(({ data }) => {
           if (data.message === "success") {
-            setForm(() => data.data);
+            // setForm(() => data.data);
             setTitle(() => data.data.title);
             dispatch({ type: ACTIONS.INIT, payload: data.data.formData });
           }
