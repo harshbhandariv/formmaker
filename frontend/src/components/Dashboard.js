@@ -114,7 +114,11 @@ export default function Dashboard() {
             {forms.map(({ _id: id, title }, index) => (
               <div className="form-grid-display-data" key={index}>
                 <div className="title-div">
-                  <Link to={`/form/${id}/view`} target="_blank">
+                  <Link
+                    to={`/form/${id}/view`}
+                    target="_blank"
+                    className="link"
+                  >
                     {title}
                   </Link>{" "}
                   <span className="copy-span" onClick={() => handleCopy(id)}>
@@ -122,7 +126,11 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div>
-                  <Link to={`/form/${id}/view`} target="_blank">
+                  <Link
+                    to={`/form/${id}/view`}
+                    target="_blank"
+                    className="link"
+                  >
                     <img
                       src={file}
                       className="img-icon"
@@ -132,12 +140,12 @@ export default function Dashboard() {
                   </Link>
                 </div>
                 <div>
-                  <Link to={`/form/${id}/edit`}>
+                  <Link to={`/form/${id}/edit`} className="link">
                     <img src={edit} className="img-icon" alt="Edit" />
                   </Link>
                 </div>
                 <div>
-                  <Link to={`/form/${id}/response`}>
+                  <Link to={`/form/${id}/response`} className="link">
                     <img src={response} className="img-icon" alt="Response" />
                   </Link>
                 </div>

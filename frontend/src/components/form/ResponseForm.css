@@ -1,0 +1,31 @@
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1em;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.response-links {
+  display: flex;
+  justify-content: center;
+}
+
+a.response-link {
+  text-decoration: none;
+  color: #fff;
+  background-color: #4b6cb7;
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 0.5em 1em;
+  text-align: center;
+}

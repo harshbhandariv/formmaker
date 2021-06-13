@@ -141,7 +141,7 @@
   cursor: pointer;
 }
 
-a {
+a.link {
   text-decoration: none;
   color: #000;
 }
