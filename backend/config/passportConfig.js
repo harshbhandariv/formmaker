@@ -1,7 +1,7 @@
 let passport = require("passport"),
   GitHubStrategy = require("passport-github2").Strategy,
   // TwitterStrategy = require("passport-twitter").Strategy;
-GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+  GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const { User } = require("../models/user");
 const axios = require("axios");
 let {
@@ -11,9 +11,9 @@ let {
   // TWITTER_CONSUMER_SECRET,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  GITHUB_CALLBAACK_URL,
-  // TWITTER_CALLBAACK_URL,
-  GOOGLE_CALLBAACK_URL,
+  GITHUB_CALLBACK_URL,
+  // TWITTER_CALLBACK_URL,
+  GOOGLE_CALLBACK_URL,
 } = process.env;
 
 passport.use(
@@ -21,7 +21,7 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: GITHUB_CALLBAACK_URL,
+      callbackURL: GITHUB_CALLBACK_URL,
     },
     async function (accessToken, refreshToken, profile, done) {
       User.findOne(
@@ -63,7 +63,7 @@ passport.use(
 //     {
 //       consumerKey: TWITTER_CONSUMER_KEY,
 //       consumerSecret: TWITTER_CONSUMER_SECRET,
-//       callbackURL: TWITTER_CALLBAACK_URL,
+//       callbackURL: TWITTER_CALLBACK_URL,
 //       includeEmail: true,
 //     },
 //     function (token, tokenSecret, profile, cb) {
@@ -99,7 +99,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: GOOGLE_CALLBAACK_URL,
+      callbackURL: GOOGLE_CALLBACK_URL,
     },
     function (token, tokenSecret, profile, cb) {
       User.findOne(

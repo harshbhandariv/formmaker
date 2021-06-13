@@ -1,195 +1,200 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 body {
-    min-height: 100vh;
-    height: 100%;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .home {
-    background: linear-gradient(90deg, #4B6CB7 0%, #182848 100%) no-repeat;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    flex-direction: column;
-    color: #fff;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%) no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  color: #fff;
 }
 
 .heading {
-    font-size: 10vw;
+  font-size: 10vw;
 }
 
 .description {
-    font-size: 3vw;
-    text-align: center;
-    width: 80%;
+  font-size: 3vw;
+  text-align: center;
+  width: 80%;
 }
 
-
 .circle {
-    position: absolute;
-    height: 50%;
-    width: 50%;
-    animation-name: rotation ;
-    animation-timing-function: linear;
-    animation-duration: 20s;
-    animation-iteration-count: infinite;
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  animation-name: rotation;
+  animation-timing-function: linear;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
 }
 
 .circle.left1 {
-    left: -10%;
-    bottom: 80%;
+  left: -10%;
+  bottom: 80%;
 }
 .circle.left2 {
-    left: -20%;
-    bottom: 80%;
-    animation-delay: 1s;
+  left: -20%;
+  bottom: 80%;
+  animation-delay: 1s;
 }
 .circle.right1 {
-    right: -10%;
-    top: 80%;
+  right: -10%;
+  top: 80%;
 }
 .circle.right2 {
-    right: -20%;
-    top: 80%;
-    animation-delay: 1s;
+  right: -20%;
+  top: 80%;
+  animation-delay: 1s;
 }
 
 .cta {
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #4B6CB7;
-    outline: none;
-    border: none;
-    border-radius: 0.5em;
-    margin-top: 1em;
-    font-size: 1.5vw;
-    cursor: pointer;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #4b6cb7;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  margin-top: 1em;
+  font-size: 1.5vw;
+  cursor: pointer;
 }
 
 .cta:hover {
-    transition: 0.5s;
-    background-color: #182848;
+  transition: 0.5s;
+  background-color: #182848;
 }
 
 .cta:active {
-    background-color: #000;
-    box-shadow: 0 0 2px 2px #182848;
+  background-color: #000;
+  box-shadow: 0 0 2px 2px #182848;
 }
 
 .modal-container.yes {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    right: 0%;
-    bottom: 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-container {
-    display: none;
+  display: none;
 }
 
 .modal {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 7em 0em;
-    background-color: #4B6CB7;
-    border-radius: 1em;
-    width: 20%;
-    animation: appear .5s ease-in-out;
-    overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 7em 0em;
+  background-color: #4b6cb7;
+  border-radius: 1em;
+  width: 20%;
+  animation: appear 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 @keyframes appear {
-    from {
-        transform: scale(0.9);
-    }
-    to {
-        transform: scale(1);
-    }
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .modal-header {
-    position: absolute;
-    background: transparent;
-    top: 0;
-    left: 0;
-    padding-left: 1em;
-    padding-top: 0.5em;
-    letter-spacing: 0.1em;
-    font-weight: 500;
+  position: absolute;
+  background: transparent;
+  top: 0;
+  left: 0;
+  padding-left: 1em;
+  padding-top: 0.5em;
+  letter-spacing: 0.1em;
+  font-weight: 500;
 }
 
 .btn.close {
-    background-color: #182848;
-    border-top-right-radius: 1em;
-    border: none;
-    outline: none;
-    padding: 1em;
-    position: absolute;
-    top: 0;
-    right: 0;
-    box-shadow: 0 0 1px 1px #4B6CB7;
-    cursor: pointer;
+  background-color: #182848;
+  border-top-right-radius: 1em;
+  border: none;
+  outline: none;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-shadow: 0 0 1px 1px #4b6cb7;
+  cursor: pointer;
 }
 
 .authmethod {
-    margin: 1em 0em;
+  margin: 1em 0em;
 }
 
 .authmethod-btn {
-    border-radius: 0.5em;
-    color: #fff;
-    padding: 0.5em 1em;
-    border: none;
-    cursor: pointer;
+  border-radius: 0.5em;
+  color: #fff;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
 }
 
 .authmethod-btn.google {
-    background-color: #be382f;
+  background-color: #be382f;
 }
 .authmethod-btn.github {
-    background-color: #8dabca;
+  background-color: #8dabca;
 }
 
-.authicon, .closeimg {
-    width: 1rem;
-    width: 1rem;
+.authicon,
+.closeimg {
+  width: 1rem;
+  width: 1rem;
 }
 
 @keyframes rotation {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-@media screen and (max-width:500px){
-    .heading{
-        font-size: 15vw;
-    }
-    .description{
-        font-size: 5vw;
-        width: 90%;
-    }
-    .cta{
-        font-size: 4vw;
-    }
-    .cta:hover {
-        position: relative;
-        box-shadow: 0 0 2px 2px #182848;
-    }
-    .modal {
-        width: 80%;
-        padding: 5em 0em;
-    }
+@media screen and (max-width: 1200px) {
+  .modal {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .heading {
+    font-size: 15vw;
+  }
+  .description {
+    font-size: 5vw;
+    width: 90%;
+  }
+  .cta {
+    font-size: 4vw;
+  }
+  .cta:hover {
+    position: relative;
+    box-shadow: 0 0 2px 2px #182848;
+  }
+  .modal {
+    width: 80%;
+    padding: 5em 0em;
+  }
 }
